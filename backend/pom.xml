@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.2</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>fr.forge.sample.spring</groupId>
+    <artifactId>spring-sample</artifactId>
+    <version>DEV-SNAPSHOT</version>
+    <name>spring-sample</name>
+    <description>Projet sample d'une application spring</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>api</module>
+        <module>app</module>
+        <module>core</module>
+        <module>infrastructure</module>
+        <module>test</module>
+    </modules>
+
+    <properties>
+        <!-- Properties Java -->
+        <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Dependance Version -->
+        <lombok.version>1.18.30</lombok.version>
+        <json-datafile.version>2.0.1-SNAPSHOT</json-datafile.version>
+    </properties>
+
+    <dependencies>
+        <!-- Provided scope (shared by all modules) -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Dependance librairie -->
+            <dependency>
+                <groupId>fr.forge.lib</groupId>
+                <artifactId>json-datafile</artifactId>
+                <version>${json-datafile.version}</version>
+            </dependency>
+
+            <!-- Dependance interne -->
+            <dependency>
+                <groupId>fr.forge.sample.spring</groupId>
+                <artifactId>spring-sample-api-generated</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>fr.forge.sample.spring</groupId>
+                <artifactId>spring-sample-api-server</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>fr.forge.sample.spring</groupId>
+                <artifactId>spring-sample-core-application</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>fr.forge.sample.spring</groupId>
+                <artifactId>spring-sample-core-model</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>fr.forge.sample.spring</groupId>
+                <artifactId>spring-sample-infrastructure</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>fr.forge.sample.spring</groupId>
+                <artifactId>spring-sample-test</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

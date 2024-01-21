@@ -1,0 +1,2 @@
+database:
+  boat-file: "bdd/db-boat.json"

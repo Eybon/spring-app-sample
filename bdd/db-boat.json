@@ -1,0 +1,14 @@
+{
+  "boats": [
+    {
+      "name": "Black_Pearl",
+      "description": "Navire le plus rapide des Caraibes",
+      "img": "black_pearl.jpg"
+    },
+    {
+      "name": "Hollandais_Volant",
+      "description": "Le navire donné par Calypso au pirate Davy Jones, pour guider les morts en mer vers l'au-delà",
+      "img": "hollandais_volant.jpg"
+    }
+  ]
+}

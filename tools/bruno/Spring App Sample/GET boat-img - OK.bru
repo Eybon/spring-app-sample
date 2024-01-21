@@ -1,0 +1,15 @@
+meta {
+  name: GET boat-img - OK
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{ENV_URL}}/api/v1/boat/img?boatName=Black_Pearl
+  body: none
+  auth: none
+}
+
+query {
+  boatName: Black_Pearl
+}

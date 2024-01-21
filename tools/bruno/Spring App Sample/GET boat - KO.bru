@@ -1,0 +1,15 @@
+meta {
+  name: GET boat - KO
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{ENV_URL}}/api/v1/boat?boatName=toto
+  body: none
+  auth: none
+}
+
+query {
+  boatName: toto
+}

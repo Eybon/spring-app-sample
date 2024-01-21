@@ -1,0 +1,15 @@
+meta {
+  name: GET boat - OK
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{ENV_URL}}/api/v1/boat?boatName=Hollandais_Volant
+  body: none
+  auth: none
+}
+
+query {
+  boatName: Hollandais_Volant
+}

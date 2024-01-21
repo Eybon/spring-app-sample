@@ -1,0 +1,15 @@
+meta {
+  name: GET boat-img - KO
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{ENV_URL}}/api/v1/boat/img?boatName=Hollandais_Volant
+  body: none
+  auth: none
+}
+
+query {
+  boatName: Hollandais_Volant
+}
