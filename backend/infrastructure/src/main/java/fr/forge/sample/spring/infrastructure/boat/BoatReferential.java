@@ -1,6 +1,6 @@
 package fr.forge.sample.spring.infrastructure.boat;
 
-import fr.forge.sample.spring.core.model.Boat;
+import fr.forge.sample.spring.core.model.boat.Boat;
 
 import java.io.Serializable;
 import java.util.ArrayList;

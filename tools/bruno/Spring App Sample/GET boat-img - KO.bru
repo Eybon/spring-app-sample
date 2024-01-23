@@ -7,9 +7,13 @@ meta {
 get {
   url: {{ENV_URL}}/api/v1/boat/img?boatName=Hollandais_Volant
   body: none
-  auth: none
+  auth: bearer
 }
 
 query {
   boatName: Hollandais_Volant
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYWNrLnNwYXJyb3dAY2FyYWliZS5jb20iLCJpYXQiOjE3MDYwMjA0MTAsImV4cCI6MTcwNjAyMTg1MH0.4jlv-lg_Fse2d008flYA-oW7n9lxQse9v1a69xM17E0
 }

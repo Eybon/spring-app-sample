@@ -15,4 +15,5 @@ public class DatabaseBean {
     BoatJsonDatabase boatDatabase(DatabaseConfig databaseConfig) {
         return new BoatJsonDatabase(databaseConfig);
     }
+
 }

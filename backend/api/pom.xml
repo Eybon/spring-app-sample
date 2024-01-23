@@ -15,7 +15,8 @@
 	<modules>
 		<module>api-server</module>
 		<module>api-generated</module>
-	</modules>
+        <module>api-security</module>
+    </modules>
 
 	<properties>
 		<!-- Version Plugin OpenAPI -->

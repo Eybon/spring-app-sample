@@ -9,7 +9,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BeanConfiguration {
     @Bean
-    public GetBoatUseCase getBoatUseCase(BoatDatabase boatDatabase){
+    public GetBoatUseCase getBoatUseCase(BoatDatabase boatDatabase) {
         return new GetBoatService(boatDatabase);
     }
+
 }

@@ -18,14 +18,14 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-public class BoatController implements BoatApiDelegate {
+public class BoatDelegate implements BoatApiDelegate {
 
-    Logger LOGGER = LoggerFactory.getLogger(BoatController.class);
+    Logger LOGGER = LoggerFactory.getLogger(BoatDelegate.class);
 
     private final GetBoatUseCase getBoatUseCase;
     private final ResourceLoader resourceLoader = new DefaultResourceLoader();
 
-    public BoatController(final GetBoatUseCase getBoatUseCase) {
+    public BoatDelegate(final GetBoatUseCase getBoatUseCase) {
         this.getBoatUseCase = getBoatUseCase;
     }
 

@@ -1,22 +1,23 @@
 package fr.forge.sample.spring.core.application.service.boat;
 
 import fr.forge.sample.spring.core.application.port.in.boat.BoatNotExistException;
+import fr.forge.sample.spring.core.application.port.in.boat.GetBoatUseCase;
 import fr.forge.sample.spring.core.application.port.out.boat.BoatDatabase;
-import fr.forge.sample.spring.core.model.Boat;
+import fr.forge.sample.spring.core.model.boat.Boat;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class GetBoatServiceTest {
     private final BoatDatabase boatDatabase = Mockito.mock(BoatDatabase.class);
-    private final GetBoatService getBoatService = new GetBoatService(boatDatabase);
+    private final GetBoatUseCase getBoatUseCase = new GetBoatService(boatDatabase);
 
     @Test
     void test_getBoat_withNullParam() throws BoatNotExistException {
         // When
         Exception catchException = null;
         try {
-            getBoatService.execute(null);
+            getBoatUseCase.execute(null);
         } catch (NullPointerException e) {
             catchException = e;
         }
@@ -36,7 +37,7 @@ public class GetBoatServiceTest {
                 .thenReturn(new Boat(boatName, boatDescription, null));
 
         // When
-        Boat boat = getBoatService.execute(boatName);
+        Boat boat = getBoatUseCase.execute(boatName);
 
         // Then
         Assertions.assertEquals(boatName, boat.name());
@@ -54,7 +55,7 @@ public class GetBoatServiceTest {
         // When
         BoatNotExistException catchException = null;
         try {
-            getBoatService.execute(boatName);
+            getBoatUseCase.execute(boatName);
         } catch (BoatNotExistException e) {
             catchException = e;
         }

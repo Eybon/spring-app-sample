@@ -7,9 +7,13 @@ meta {
 get {
   url: {{ENV_URL}}/api/v1/boat?boatName=toto
   body: none
-  auth: none
+  auth: bearer
 }
 
 query {
   boatName: toto
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYWNrLnNwYXJyb3dAY2FyYWliZS5jb20iLCJpYXQiOjE3MDU5NjAyODgsImV4cCI6MTcwNTk2MTcyOH0.FUGOA_F--tv4Mlhv6Ti4UHfpNin9QUJsNAaVoMYF7wo
 }

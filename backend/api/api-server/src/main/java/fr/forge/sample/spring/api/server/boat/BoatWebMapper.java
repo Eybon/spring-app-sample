@@ -1,7 +1,7 @@
 package fr.forge.sample.spring.api.server.boat;
 
 import fr.forge.sample.spring.api.generated.BoatWeb;
-import fr.forge.sample.spring.core.model.Boat;
+import fr.forge.sample.spring.core.model.boat.Boat;
 
 public class BoatWebMapper {
     static BoatWeb fromModel(Boat boat) {

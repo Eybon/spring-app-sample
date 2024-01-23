@@ -1,12 +1,18 @@
-# Sample spring-app
+# :rocket: Sample spring-app
 
-Sample d'une application springboot 
+Projet template d'une application springboot 
 
 **Choix d'implémentations** : 
 - Architecture hexagonale
 - API REST : Gestion des contrats d'interfaces via OpenAPI
-- BDD : Fake BDD via stockage dans des fichiers Json
+- Stockage : Fake BDD via stockage dans des fichiers Json
+- Authentification : Token JWT géré via spring-security + BDD H2 embarqué
 
+<br/>
+
+**Les points qui sont pas traités/aboutis** :
+- Gestion des retours 403 --> On ne sait pas si l'utilisateur n'existe pas, si il n'est pas loggué ou si le token a expiré
+- Desactivation de la partie `spring-security` via un profil spring --> actuellement en commentant une dep maven
 
 
 <br/>
@@ -43,6 +49,61 @@ Les fichiers de la BDD sont disponible dans le dossier `bdd`.
 
 <br/>
 
+## :key: Authentification via spring-security
+
+Mise en place d'une authentification via spring-security et l'utilisation de token JWT.
+
+Il sera nécessaire de d'abord passer par l'api d'authentification pour récupérer un token, qui devra ensuite être fournit pour utiliser les APIs.
+
+La partie gestion de l'authentification est isolé dans le module `api-security` qui gère ça en autonomie.
+
+Il est donc possible de facilement supprimer la partie securité en commentant la dependance dans le module `app` :
+```xml
+  <dependency>
+      <groupId>fr.forge.sample.spring</groupId>
+      <artifactId>spring-sample-api-security</artifactId>
+  </dependency>
+```
+
+### JWT
+
+Récupération du token JWT via l'API `POST /api/v1/login`. 
+Par exemple avec l'utilisateur fournit par defaut (avec un body json ou un header `Content-Type` = `application/json`) :
+```json
+{
+  "email": "jack.sparrow@caraibe.com",
+  "password": "test"
+}
+```
+
+Il faut ensuite fournir le token lors de l'appel des APIs (avec un header `Authorization` = `Bearer {{token}}`).
+
+### BDD H2
+
+Pour stocker les utilisateurs autorisés, on passe par une BDD embarquée H2 disponible uniquement dans le module `api-security`
+
+C'est un choix d'implémentation car dans cette appli la gestion des users est uniquement nécessaire pour l'authentification.
+
+Les users sont initialisés au démarrage via le script `data.sql`.
+
+Le mot de passe du user est hashé via bcrypt (outil pour générer un hash : https://bcrypt.online/)
+
+** Info sur la console **
+- Console de BDD embarqué H2 disponible ici : http://localhost:8080/h2-console
+- Accès via le user/pass : test/test (spécifié dans la config)
+- Pour pouvoir accèder à la console sans token, il y une exception dans la conf spring-security.
+
+
+
+<br/>
+
+## :whale: Image docker
+
+TODO
+
+
+<br/>
+
 ## :package: CI-CD via Github
 
 TODO
@@ -59,6 +120,7 @@ Alternative aux outils Postman/Insomnia/etc... --> https://github.com/usebruno/b
 
 La collection est disponible dans le dossier `tools/bruno`
 
+
 ### Documentation API : Redoc
 
 Installation outil : 
@@ -70,3 +132,12 @@ http-server ./ -p 8081
 ```
 
 Doc dispo ici : http://127.0.0.1:8081/redoc.html
+
+
+
+<br/>
+
+## :scroll: Ressources utilisées
+
+Documentation : 
+- BDD H2 : https://www.baeldung.com/spring-boot-h2-database

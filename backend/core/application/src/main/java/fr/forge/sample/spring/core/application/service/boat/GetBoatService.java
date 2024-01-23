@@ -3,7 +3,7 @@ package fr.forge.sample.spring.core.application.service.boat;
 import fr.forge.sample.spring.core.application.port.in.boat.BoatNotExistException;
 import fr.forge.sample.spring.core.application.port.in.boat.GetBoatUseCase;
 import fr.forge.sample.spring.core.application.port.out.boat.BoatDatabase;
-import fr.forge.sample.spring.core.model.Boat;
+import fr.forge.sample.spring.core.model.boat.Boat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

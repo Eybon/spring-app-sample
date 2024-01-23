@@ -26,6 +26,10 @@
 		</dependency>
 		<dependency>
 			<groupId>fr.forge.sample.spring</groupId>
+			<artifactId>spring-sample-api-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>fr.forge.sample.spring</groupId>
 			<artifactId>spring-sample-core-application</artifactId>
 		</dependency>
 		<dependency>

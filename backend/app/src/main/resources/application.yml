@@ -1,2 +1,33 @@
+# Configuration pour la "database" fichier
 database:
-  boat-file: "bdd/db-boat.json"
+  boat-file: "bdd-fake/db-boat.json"
+
+# Configuration pour la database user (specifique pour l'authent)
+# BDD embarquee H2
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create-drop
+    # Pour le debug des requetes
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: jdbc:h2:mem:spring-security
+    driver-class-name: org.h2.Driver
+    username: test
+    password: test
+  # Pour avoir la console admin H2
+  h2:
+    console:
+      enabled: true
+
+# Parametre pour la partie authent
+token:
+  signing:
+    key: 413F4428472B4B6250655368566D5970337336763979244226452948404D6351
+  # Delai de validité du token en ms
+  delay: 3600000

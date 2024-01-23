@@ -1,0 +1,142 @@
+openapi: 3.0.3
+info:
+  title: Spring Sample App API
+  description: API pour l'application spring-sample
+  version: '1.0'
+servers:
+  - url: localhost
+paths:
+  /api/v1/boat:
+    get:
+      summary: "Récupération d'un bateau via son nom"
+      operationId: get_boat
+      tags:
+        - Boat
+      parameters:
+        - in: query
+          name: boatName
+          required: true
+          description: "Nom du bateau à récupérer"
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Information du bateau demandée"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Boat'
+        '400':
+          description: "Fonctional Error"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: "Internal Error"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/v1/boat/img:
+    get:
+      summary: "Récupération de l'image du bateau via son nom"
+      operationId: get_boat_image
+      tags:
+        - Boat
+      parameters:
+        - in: query
+          name: boatName
+          required: true
+          description: "Nom du bateau à récupérer"
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Image du bateau demandée"
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: "Fonctional Error"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: "Internal Error"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/v1/login:
+    post:
+      summary: "API d'authentification pour accéder ensuite aux autres APIs"
+      operationId: login
+      tags:
+        - Authentification
+      parameters:
+        - in: query
+          name: userName
+          required: true
+          description: "Nom de l'utilisateur qui souhaite s'authentifier"
+          schema:
+            type: string
+        - in: query
+          name: userPassword
+          required: true
+          description: "Password de l'utilisateur qui souhaite s'authentifier"
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Authentification OK, la réponse contient le token à utiliser dans les autres APIs"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        '400':
+          description: "Fonctional Error"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: "Internal Error"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Boat:
+      type: object
+      title: Boat
+      description: "Objet représentant un bateau"
+      properties:
+        name:
+          description: "Nom du bateau"
+          type: string
+        description:
+          description: "Description textuelle du bateau"
+          type: string
+    Token:
+      type: string
+      title: Token
+      description: "Token pour s'authentifier sur les APIs"
+    Error:
+      type: object
+      title: Error
+      description: "Objet generique pour les retours en erreur"
+      required:
+        - status
+        - message
+      properties:
+        status:
+          type: integer
+          description: "Code statut HTTP"
+        message:
+          type: string
+          description: "Une description de l'erreur"

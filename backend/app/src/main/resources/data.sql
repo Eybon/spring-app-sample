@@ -1,0 +1,1 @@
+INSERT INTO user_table (email, password, role) VALUES ('jack.sparrow@caraibe.com', '$2y$10$7a0uLbuJvyrzmpoHC76nFuTaG3H5WshX7KLWTRVJjZjnU9F/tsruK', 'USER');

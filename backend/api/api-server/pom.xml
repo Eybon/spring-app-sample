@@ -12,6 +12,12 @@
     <artifactId>spring-sample-api-server</artifactId>
 
     <dependencies>
+        <!-- Dependance Spring -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <!-- Dependance interne -->
         <dependency>
             <groupId>fr.forge.sample.spring</groupId>
