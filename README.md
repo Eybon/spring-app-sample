@@ -13,6 +13,7 @@ Projet template d'une application springboot
 **Les points qui sont pas traités/aboutis** :
 - Gestion des retours 403 --> On ne sait pas si l'utilisateur n'existe pas, si il n'est pas loggué ou si le token a expiré
 - Desactivation de la partie `spring-security` via un profil spring --> actuellement en commentant une dep maven
+- Pas de gestion de version de l'app
 
 
 <br/>
@@ -99,20 +100,30 @@ Le mot de passe du user est hashé via bcrypt (outil pour générer un hash : ht
 
 ## :whale: Image docker
 
-TODO
+Build d'une image docker via le fichier `Dockerfile`.
 
+**Commande docker** :
 
-<br/>
-
-## :package: CI-CD via Github
-
-TODO
-
+```shell
+# Build image
+sudo docker build --tag=sample-spring-app:latest .
+# Run image
+sudo docker run -d -p 8080:8080 sample-spring-app:latest
+```
 
 
 <br/>
 
 ## :gear: Toolings
+
+### CI-CD via Github
+
+Le pipeline github actions est dispo ici : `.github/workflows/build-and-publish.yml`
+
+Il permet de faire un `maven package`, puis de builder/publier l'image docker.
+
+L'image est ensuite disponible dans la section `Packages` du projet Github.
+
 
 ### Client REST de test : Bruno
 

@@ -34,7 +34,7 @@
 
         <!-- Dependance Version -->
         <lombok.version>1.18.30</lombok.version>
-        <json-datafile.version>2.0.1-SNAPSHOT</json-datafile.version>
+        <json-datafile.version>2.0.1</json-datafile.version>
         <jwt.version>0.11.5</jwt.version>
     </properties>
 
