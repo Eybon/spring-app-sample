@@ -23,9 +23,8 @@ public class BoatJsonDatabase implements BoatDatabase {
     }
 
     @Override
-    public Boat getBoat(String boatName) throws BoatNotExistException {
+    public Boat get(String boatName) throws BoatNotExistException {
         LOGGER.info("[DB] Method getBoat : {}", boatName);
-
         return this.boatReferential.all()
                 .stream()
                 .filter(x -> boatName.equals(x.name()))
@@ -34,8 +33,33 @@ public class BoatJsonDatabase implements BoatDatabase {
     }
 
     @Override
-    public void addBoat(Boat boat) {
-        // TODO à implementer
+    public void add(Boat boat) {
+        LOGGER.info("[DB] Method addBoat : {}", boat.toString());
+        this.boatReferential.add(boat);
+        this.syncDatabase();
+    }
+
+    @Override
+    public void update(Boat boat) {
+        LOGGER.info("[DB] Method update : {}", boat.toString());
+        this.boatReferential.remove(boat.name());
+        this.boatReferential.add(boat);
+        this.syncDatabase();
+    }
+
+    @Override
+    public void remove(String boatName) {
+        LOGGER.info("[DB] Method remove : {}", boatName);
+        this.boatReferential.remove(boatName);
+        this.syncDatabase();
+    }
+
+    @Override
+    public boolean exist(String boatName) {
+        LOGGER.info("[DB] Method boatExist : {}", boatName);
+        return this.boatReferential.all()
+                .stream()
+                .anyMatch(x -> boatName.equals(x.name()));
     }
 
     private void loadDatabase() {

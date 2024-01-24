@@ -1,0 +1,19 @@
+meta {
+  name: DELETE boat - OK
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{ENV_URL}}/api/v1/boat?boatName=Intrepide
+  body: none
+  auth: bearer
+}
+
+query {
+  boatName: Intrepide
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYWNrLnNwYXJyb3dAY2FyYWliZS5jb20iLCJpYXQiOjE3MDYxMzA4NjUsImV4cCI6MTcwNjEzNDQ2NX0.nFoaJFK_xSRqaF-Tw1tY8uiMqLBDAmRJt9K_MTsWJHA
+}

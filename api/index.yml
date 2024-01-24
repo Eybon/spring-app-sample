@@ -38,6 +38,93 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+    post:
+      summary: "Enregistrement d'un nouveau bateau"
+      operationId: post_boat
+      tags:
+        - Boat
+      requestBody:
+        description: "Information du bateau à enregistrer"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Boat'
+      responses:
+        '201':
+          description: "Création du bateau OK"
+        '400':
+          description: "Fonctional Error"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: "Boat Already Exist"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: "Internal Error"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      summary: "Mise à jour des informations d'un bateau"
+      operationId: put_boat
+      tags:
+        - Boat
+      requestBody:
+        description: "Information du bateau à modifier"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Boat'
+      responses:
+        '204':
+          description: "Mise à jour du bateau OK"
+        '400':
+          description: "Fonctional Error"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: "Internal Error"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: "Suppression d'un bateau via son nom"
+      operationId: delete_boat
+      tags:
+        - Boat
+      parameters:
+        - in: query
+          name: boatName
+          required: true
+          description: "Nom du bateau à supprimer"
+          schema:
+            type: string
+      responses:
+        '204':
+          description: "Suppression du bateau OK"
+        '400':
+          description: "Fonctional Error"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: "Internal Error"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/v1/boat/img:
     get:
       summary: "Récupération de l'image du bateau via son nom"

@@ -1,17 +1,17 @@
 meta {
-  name: GET boat-img - OK
+  name: GET boat - KO
   type: http
-  seq: 3
+  seq: 2
 }
 
 get {
-  url: {{ENV_URL}}/api/v1/boat/img?boatName=Black_Pearl
+  url: {{ENV_URL}}/api/v1/boat?boatName=toto
   body: none
   auth: bearer
 }
 
 query {
-  boatName: Black_Pearl
+  boatName: toto
 }
 
 auth:bearer {

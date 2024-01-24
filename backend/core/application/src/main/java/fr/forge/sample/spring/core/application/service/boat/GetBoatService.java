@@ -4,14 +4,10 @@ import fr.forge.sample.spring.core.application.port.in.boat.BoatNotExistExceptio
 import fr.forge.sample.spring.core.application.port.in.boat.GetBoatUseCase;
 import fr.forge.sample.spring.core.application.port.out.boat.BoatDatabase;
 import fr.forge.sample.spring.core.model.boat.Boat;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class GetBoatService implements GetBoatUseCase {
-
-    Logger LOGGER = LoggerFactory.getLogger(GetBoatService.class);
 
     private final BoatDatabase boatDatabase;
 
@@ -23,6 +19,6 @@ public class GetBoatService implements GetBoatUseCase {
     public Boat execute(String boatName) throws BoatNotExistException {
         Objects.requireNonNull(boatName, "Parameter 'boatName' must not be null");
 
-        return this.boatDatabase.getBoat(boatName);
+        return this.boatDatabase.get(boatName);
     }
 }

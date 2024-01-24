@@ -3,8 +3,7 @@ package fr.forge.sample.spring.api.server.boat;
 import fr.forge.sample.spring.api.generated.BoatApiDelegate;
 import fr.forge.sample.spring.api.generated.BoatWeb;
 import fr.forge.sample.spring.api.server.commons.GenericWebException;
-import fr.forge.sample.spring.core.application.port.in.boat.BoatNotExistException;
-import fr.forge.sample.spring.core.application.port.in.boat.GetBoatUseCase;
+import fr.forge.sample.spring.core.application.port.in.boat.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.DefaultResourceLoader;
@@ -23,10 +22,19 @@ public class BoatDelegate implements BoatApiDelegate {
     Logger LOGGER = LoggerFactory.getLogger(BoatDelegate.class);
 
     private final GetBoatUseCase getBoatUseCase;
+    private final BoatRegistrationUseCase boatRegistrationUseCase;
+    private final BoatUpdateUseCase boatUpdateUseCase;
+    private final BoatRemovalUseCase boatRemovalUseCase;
     private final ResourceLoader resourceLoader = new DefaultResourceLoader();
 
-    public BoatDelegate(final GetBoatUseCase getBoatUseCase) {
+    public BoatDelegate(final GetBoatUseCase getBoatUseCase,
+                        final BoatRegistrationUseCase boatRegistrationUseCase,
+                        final BoatUpdateUseCase boatUpdateUseCase,
+                        final BoatRemovalUseCase boatRemovalUseCase) {
         this.getBoatUseCase = getBoatUseCase;
+        this.boatRegistrationUseCase = boatRegistrationUseCase;
+        this.boatUpdateUseCase = boatUpdateUseCase;
+        this.boatRemovalUseCase = boatRemovalUseCase;
     }
 
     public ResponseEntity<BoatWeb> getBoat(String boatName) {
@@ -38,6 +46,34 @@ public class BoatDelegate implements BoatApiDelegate {
             LOGGER.info("[API] GET /boat/{} --> Boat not exist", boatName);
             throw new GenericWebException(HttpStatus.NOT_FOUND, String.format("Le bateau `%s` n'existe pas", boatName));
         }
+    }
+
+    public ResponseEntity<Void> postBoat(BoatWeb boatWeb) {
+        LOGGER.info("[API] POST /boat with body : {}", boatWeb.toString());
+        try {
+            boatRegistrationUseCase.execute(BoatWebMapper.fromWeb(boatWeb));
+        } catch (BoatAlreadyExistException e) {
+            LOGGER.info("[API] POST /boat with name : {} --> Boat already exist", boatWeb.getName());
+            throw new GenericWebException(HttpStatus.CONFLICT, String.format("Le bateau `%s` existe deja", boatWeb.getName()));
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    public ResponseEntity<Void> putBoat(BoatWeb boatWeb) {
+        LOGGER.info("[API] PUT /boat with body : {}", boatWeb.toString());
+        try {
+            boatUpdateUseCase.execute(BoatWebMapper.fromWeb(boatWeb));
+        } catch (BoatNotExistException e) {
+            LOGGER.info("[API] PUT /boat with name : {} --> Boat not exist", boatWeb.getName());
+            throw new GenericWebException(HttpStatus.NOT_FOUND, String.format("Le bateau `%s` n'existe pas, impossible de faire la modification", boatWeb.getName()));
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    public ResponseEntity<Void> deleteBoat(String boatName) {
+        LOGGER.info("[API] DELETE /boat/{}", boatName);
+        boatRemovalUseCase.execute(boatName);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     public ResponseEntity<Resource> getBoatImage(String boatName) {

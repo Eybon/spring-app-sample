@@ -1,0 +1,22 @@
+meta {
+  name: POST boat - KO
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{ENV_URL}}/api/v1/boat
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYWNrLnNwYXJyb3dAY2FyYWliZS5jb20iLCJpYXQiOjE3MDYxMzA4NjUsImV4cCI6MTcwNjEzNDQ2NX0.nFoaJFK_xSRqaF-Tw1tY8uiMqLBDAmRJt9K_MTsWJHA
+}
+
+body:json {
+  {
+    "name": "Hollandais_Volant",
+    "description": "Le navire donné par Calypso au pirate Davy Jones, pour guider les morts en mer vers l'au-delà"
+  }
+}

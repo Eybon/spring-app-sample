@@ -2,6 +2,8 @@
 
 Projet template d'une application springboot 
 
+Le projet expose principalement des APIs CRUD de gestion de bateau :boat:
+
 **Choix d'implémentations** : 
 - Architecture hexagonale
 - API REST : Gestion des contrats d'interfaces via OpenAPI
@@ -14,7 +16,7 @@ Projet template d'une application springboot
 - Gestion des retours 403 --> On ne sait pas si l'utilisateur n'existe pas, si il n'est pas loggué ou si le token a expiré
 - Desactivation de la partie `spring-security` via un profil spring --> actuellement en commentant une dep maven
 - Pas de gestion de version de l'app
-
+- Brique de testing d'intégration bout en bout
 
 <br/>
 

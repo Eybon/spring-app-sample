@@ -1,7 +1,7 @@
 meta {
   name: POST login
   type: http
-  seq: 6
+  seq: 1
 }
 
 post {
@@ -11,6 +11,13 @@ post {
 }
 
 body:json {
+  {
+    "email": "jack.sparrow@caraibe.com",
+    "password": "test"
+  }
+}
+
+body:text {
   {
     "email": "jack.sparrow@caraibe.com",
     "password": "test"

@@ -10,8 +10,13 @@ import java.util.Set;
 
 public class BoatReferential implements Serializable {
     Set<Boat> boats = new HashSet<>();
-
     public List<Boat> all() {
         return new ArrayList<>(this.boats);
+    }
+    public void add(Boat boat) {
+        boats.add(boat);
+    }
+    public void remove(String boatName) {
+        boats.removeIf(x -> x.name().equals(boatName));
     }
 }

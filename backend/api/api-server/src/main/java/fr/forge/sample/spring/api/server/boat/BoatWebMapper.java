@@ -10,4 +10,8 @@ public class BoatWebMapper {
                 .description(boat.description())
                 .build();
     }
+
+    static Boat fromWeb(BoatWeb boat){
+        return new Boat(boat.getName(), boat.getDescription(), null);
+    }
 }

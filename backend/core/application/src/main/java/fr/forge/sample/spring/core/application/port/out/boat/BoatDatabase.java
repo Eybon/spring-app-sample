@@ -4,6 +4,9 @@ import fr.forge.sample.spring.core.application.port.in.boat.BoatNotExistExceptio
 import fr.forge.sample.spring.core.model.boat.Boat;
 
 public interface BoatDatabase {
-    Boat getBoat(String boatName) throws BoatNotExistException;
-    void addBoat(Boat boat);
+    Boat get(String boatName) throws BoatNotExistException;
+    void add(Boat boat);
+    void update(Boat boat);
+    void remove(String boatName);
+    boolean exist(String boatName);
 }
