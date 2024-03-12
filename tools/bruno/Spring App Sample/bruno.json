@@ -1,5 +1,21 @@
 {
   "version": "1",
   "name": "Spring App Sample",
-  "type": "collection"
+  "type": "collection",
+  "proxy": {
+    "bypassProxy": "",
+    "enabled": "global",
+    "auth": {
+      "enabled": false,
+      "username": "",
+      "password": ""
+    },
+    "port": null,
+    "hostname": "",
+    "protocol": "https"
+  },
+  "clientCertificates": {
+    "enabled": true,
+    "certs": []
+  }
 }

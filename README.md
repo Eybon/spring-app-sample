@@ -96,6 +96,18 @@ Le mot de passe du user est hashé via bcrypt (outil pour générer un hash : ht
 - Accès via le user/pass : test/test (spécifié dans la config)
 - Pour pouvoir accèder à la console sans token, il y une exception dans la conf spring-security.
 
+### HTTPS & TLS 1.3 & SSL-2-WAY
+
+Tentative de mise en place de SSL-2-WAY pour forcer l'utilisation de certificat coté client.
+
+Génération clé publique/privée via keytool :
+```shell
+keytool -genkeypair -alias forge -dname "CN=localhost" \
+  -keyalg RSA -keysize 4096 -validity 3650 \
+  -keystore keystore.pfx -keypass fake-keypass-mdp \
+  -storeType PKCS12 -storepass fake-storepass-mdp
+```
+
 
 
 <br/>

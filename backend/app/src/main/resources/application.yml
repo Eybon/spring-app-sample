@@ -31,3 +31,17 @@ token:
     key: 413F4428472B4B6250655368566D5970337336763979244226452948404D6351
   # Delai de validité du token en ms
   delay: 3600000
+
+
+# enable/disable https
+server:
+  ssl:
+    enabled: true
+    protocol: TLS
+    enabled-protocols: TLSv1.3
+    key-store-type: PKCS12
+    key-store: classpath:keystore/keystore.pfx
+    key-store-password: fake-storepass-mdp
+#    client-auth: need
+#    trust-store: classpath:keystore/keystore.pfx
+#    trust-store-password: fake-storepass-mdp
